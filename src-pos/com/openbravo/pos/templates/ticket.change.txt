@@ -20,7 +20,7 @@
 //    You should have received a copy of the GNU General Public License
 //    along with uniCenta oPOS.  If not, see <http://www.gnu.org/licenses/>.
 // **************************************************************************
-
+/*
 import com.openbravo.format.Formats;
 import com.openbravo.pos.forms.DataLogicSales; 
 import com.openbravo.data.loader.Session;
@@ -35,7 +35,7 @@ DataLogicSales logic = new DataLogicSales();
 logic.init(session);
 
 
-javax.swing.JOptionPane.showMessageDialog(null, "Value :"+ticket.getLinesCount(), "Product", JOptionPane.WARNING_MESSAGE);
+javax.swing.JOptionPane.showMessageDialog(null, "Vrednost:"+ticket.getLinesCount(), "Izdelek", JOptionPane.WARNING_MESSAGE);
 
 index = ticket.getLinesCount(); 
 if(index == null){
@@ -278,4 +278,4 @@ if(index>0){
    break;
   }
  }
-}
+}*/
