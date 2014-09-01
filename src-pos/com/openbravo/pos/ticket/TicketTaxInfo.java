@@ -105,4 +105,11 @@ public class TicketTaxInfo {
     public String printTotal() {
         return Formats.CURRENCY.formatValue(new Double(getTotal()));
     }    
+    /*
+    add/change microopen
+    VRNE IME DAVKA za izpis na računu
+    */
+    public String printTaxName(){
+        return tax.getName();
+    }
 }
