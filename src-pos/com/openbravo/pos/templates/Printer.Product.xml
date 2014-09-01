@@ -23,7 +23,7 @@
     <ticket>
         <image>Printer.Ticket.Logo</image>
         <line>
-            <text align="center" length="42">N.I.F. 00.000.000 X</text>
+            <text align="center" length="42">μRAČUNI</text>
         </line>
         <line size="1">
             <text align ="center" length="42" bold="true">${product.printName()}</text>

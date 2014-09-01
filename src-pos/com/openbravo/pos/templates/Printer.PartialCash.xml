@@ -25,18 +25,18 @@
         <line></line>
         <line></line>
         <line size="1">
-            <text align ="center" length="42" bold="true">Partial Cash Report</text>
+            <text align ="center" length="42" bold="true">PREGLED STANJA BLAGAJNE</text>
         </line>
         <line></line>
         <line>
-            <text bold="true">Sales Report</text>
+            <text bold="true">Delni zaključek</text>
         </line>
         <line>
-            <text align ="left" length="12">Name</text>
-            <text align ="right" length="14">Price+Tax</text>
+            <text align ="left" length="12">Ime</text>
+            <text align ="right" length="14">Cena z DDV</text>
             <text align ="right" length="1"></text>
-            <text align ="right" length="5">Items</text>
-            <text align ="right" length="10">Total</text>
+            <text align ="right" length="5">Količina</text>
+            <text align ="right" length="10">Skupaj</text>
         </line>
         <line>
             <text>------------------------------------------</text>
@@ -54,27 +54,27 @@
             <text>------------------------------------------</text>
         </line>
         <line>
-            <text align ="left" length="32">Ticket Lines:</text>
+            <text align ="left" length="32">Prodanih artiklov po vrsticah na računu:</text>
             <text align ="right" length="10">${payments.printProductSalesRows()}</text>
         </line>
         <line></line>
         <line size="1">
-            <text align ="left" length="22" bold="true">Total Items</text>
+            <text align ="left" length="22" bold="true">Prodanih artiklov po komadih:</text>
             <text align ="right" length="10" bold="true">${payments.printProductSalesTotalUnits()}</text>
             <text align ="right" length="10" bold="true">${payments.printProductSalesTotal()}</text>
         </line>
         <line></line>
 <!-- Janar - Removed Ticket Lines -->
         <line>
-            <text bold="true">Removed Ticket Lines Report</text>
+            <text bold="true">Poročilo artiklov odstranjenih iz računa</text>
         </line>
         <line>
-            <text align ="left">Employee</text>
+            <text align ="left">Zaposleni</text>
         </line>
         <line>
-            <text align ="left" length="10">Ticket ID</text>
-            <text align ="left" length="22">Product</text>
-            <text align ="right" length="8">Items</text>
+            <text align ="left" length="10">Št. računa</text>
+            <text align ="left" length="22">Izdelek</text>
+            <text align ="right" length="8">Količina</text>
         </line>
         <line>
             <text>------------------------------------------</text>
@@ -95,10 +95,10 @@
         <line></line>
 <!-- End -->                
         <line>
-            <text bold="true">Payments Report</text>
+            <text bold="true">Poročilo plačil</text>
         </line>
         <line>
-            <text align ="right" length="42">Totals</text>
+            <text align ="right" length="42">Skupaj</text>
         </line>
         <line>
             <text>------------------------------------------</text>
@@ -113,20 +113,20 @@
             <text>------------------------------------------</text>
         </line>
         <line>
-            <text align ="left" length="32">Payments:</text>
+            <text align ="left" length="32">Plačila:</text>
             <text align ="right" length="10">${payments.printPayments()}</text>
         </line>        
         <line></line>
         <line size="1">
-            <text align ="left" length="32" bold="true">Total</text>
+            <text align ="left" length="32" bold="true">Skupaj:</text>
             <text align ="right" length="10" bold="true">${payments.printPaymentsTotal()}</text>
         </line>
         <line></line>
         <line>
-            <text bold="true">Taxes Report</text>
+            <text bold="true">DDV</text>
         </line>
         <line>
-            <text align ="right" length="42">Totals</text>
+            <text align ="right" length="42">Skupaj</text>
         </line>
         <line>
             <text>------------------------------------------</text>
@@ -143,12 +143,12 @@
 <!-- JG 9 Nov 12 for Categories -->
         <line></line>
         <line>
-            <text bold="true">Product Category Sales</text>
+            <text bold="true">Prodaja artiklov po skupinah</text>
         </line>
         <line>
-            <text align ="left" length="22">Name</text>
-            <text align ="right" length="10">Qty</text>
-            <text align ="right" length="10">Total</text>
+            <text align ="left" length="22">Ime</text>
+            <text align ="right" length="10">Kol.</text>
+            <text align ="right" length="10">Skupaj</text>
         </line>
         <line>
             <text>------------------------------------------</text>
@@ -164,12 +164,12 @@
             <text>------------------------------------------</text>
         </line>
         <line>
-            <text align ="left" length="22">Ticket Lines:</text>
+            <text align ="left" length="22">Vrstic na računu:</text>
             <text align ="right" length="10">${payments.printCategorySalesRows()}</text>
         </line>
         <line></line>
         <line size="1">
-            <text align ="left" length="22" bold="true">Total</text>
+            <text align ="left" length="22" bold="true">Skupaj:</text>
             <text align ="right" length="10" bold="true">${payments.printCategorySalesTotalUnits()}</text>
             <text align ="right" length="10" bold="true">${payments.printCategorySalesTotal()}</text>
         </line>
@@ -179,20 +179,20 @@
         <line></line>
 <!-- end -->
         <line>
-            <text align ="left" length="32">Receipts:</text>
+            <text align ="left" length="32">Računov:</text>
             <text align ="right" length="10">${payments.printSales()}</text>
         </line>                
         <line></line>
         <line size="1">
-            <text align ="left" length="32" bold="true">Subtotal</text>
+            <text align ="left" length="32" bold="true">Brez DDV:</text>
             <text align ="right" length="10" bold="true">${payments.printSalesBase()}</text>
         </line>
         <line size="1">
-            <text align ="left" length="32" bold="true">Taxes</text>
+            <text align ="left" length="32" bold="true">DDV:</text>
             <text align ="right" length="10" bold="true">${payments.printSalesTaxes()}</text>
         </line>
         <line size="1">
-            <text align ="left" length="32" bold="true">Total</text>
+            <text align ="left" length="32" bold="true">Skupaj:</text>
             <text align ="right" length="10" bold="true">${payments.printSalesTotal()}</text>
         </line>        
         <line></line>
@@ -201,15 +201,15 @@
             <text>${payments.printHost()}</text>
         </line>    
         <line>
-            <text length="18">Sequence:</text>
+            <text length="18">Sekvenca:</text>
             <text>${payments.printSequence()}</text>
         </line> 
         <line>
-            <text length="18">Start Date:</text>
+            <text length="18">Od:</text>
             <text>${payments.printDateStart()}</text>
         </line>  
         <line>
-            <text length="18">End Date:</text>
+            <text length="18">Do:</text>
             <text>${payments.printDateEnd()}</text>
         </line>  
     </ticket>
