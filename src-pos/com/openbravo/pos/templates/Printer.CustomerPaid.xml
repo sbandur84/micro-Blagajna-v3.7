@@ -1,100 +1,154 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!-- 
     uniCenta oPOS - Touch friendly Point Of Sale
     Copyright (c) 2009-2014 uniCenta.
     http://sourceforge.net/projects/unicentaopos
+
     This file is part of uniCenta oPOS.
+
     uniCenta oPOS is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
     uniCenta oPOS is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    but WITHOUT ANY WARRANTY; without even the implied warranty or
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with uniCenta oPOS.  If not, see <http://www.gnu.org/licenses/>.
--->
+    along with uniCenta oPOS.
+  If not, see <http://www.gnu.org/licenses/>.
 
+-->
 <output>
-  <ticket>
-    <image>Printer.Ticket.Logo</image>
+    <display>
+        <line>
+            <text align="left" length="10">Plačano skupaj</text>
+            <text align="right" length="10">${ticket.printTotalPaid()}</text>
+        </line>
+        <line>
+            <text align="center" length="20">Hvala za nakup</text>
+        </line>
+    </display>
+    <ticket>
+        <image>Printer.Ticket.Logo</image>
         <line></line>
+        <line>
+            <text align="center" length="42">Hvala za nakup</text>
+        </line>
+        <line></line>
+        <line>
+            <text align="left" length="15">Račun:</text>
+            <text>${ticket.printId()}</text>
+        </line>
+        <line>
+            <text align="left" length="15">Datum:</text>
+            <text>${ticket.printDate()}</text>
+        </line>
+        
+        #if ($ticket.getCustomer())
+            <line>
+                <text align="left" length="15">Račun:</text>
+                <text>${ticket.getCustomer().printTaxid()}</text>
+            </line>
+            <line>
+                <text align="left" length="15">Stranka:</text>
+                <text>${ticket.getCustomer().printName()}</text>
+            </line>
+
+        #end
+
         <line></line>
         <line size="1">
-            <text align ="center" bold="true" length="42">Poročilo zaključka blagajne</text>
+            <text align ="left" length="32" bold="true">Plačano skupaj:</text>
+            <text align ="right" length="10" bold="true">${ticket.printTotalPaid()}</text>
         </line>
         <line></line>
-        <line><text align ="center" bold="true" length="42">Poročilo plačil</text></line>
         <line>
-           <text align ="left" length="22">Vrsta plačila</text>
-           <text align ="right" length="20">Vrednost</text>
+            <text align ="left" length="32" bold="true">Bilanca stranke:</text>
+            <text align ="right" length="10" bold="true">${customer.printCurDebt()}</text>
         </line>
-        <line><text>------------------------------------------</text></line>
-        #foreach ($line in $payments.getPaymentLines())
-        <line>
-            <text align ="left" bold="true" length="32">${line.printType()} ${line.printReason()}</text>
-            <text align ="right" bold="true" length="10">${line.printValue()}</text>
-        </line>
+
+    #foreach ($paymentline in $ticket.payments)
+        #if ($paymentline.name == "cash")
+            <line></line>
+            <line>
+                <text bold="true">Gotovina</text>
+            </line>
+            <line>
+                <text align="left" length="22">Prejeto:</text>
+                <text align ="right" length="20">${paymentline.printPaid()}</text>
+            </line>
+            <line>
+                <text align="left" length="22">Drobiž:</text>
+                <text align ="right" length="20">${paymentline.printChange()}</text>
+            </line>
         #end
-        <line><text>------------------------------------------</text></line>
-        <line>
-            <text align ="left" length="22" bold="true">Blagajna skupaj</text>
-            <text align ="right" length="20" bold="true">${payments.printPaymentsTotal()}</text>
-        </line>
-        <line>
-            <text align ="left" length="22">Št. izdanih računov:</text>
-            <text align ="right" length="20">${payments.printSales()}</text>
-        </line>
-        <line>
-            <text align ="left" length="22">Število plačil:</text>
-            <text align ="right" length="20">${payments.printPayments()}</text>
-        </line>
-        <line><text>==========================================</text></line>
-        <line><text align ="center" bold="true" length="42">Specifikacija DDV</text></line>
-        <line>
-            <text align ="left"  length="22">Stopnja</text>
-            <text align ="right"  length="20">Vrednost</text>
-        </line>
-        <line><text>------------------------------------------</text></line>
-        #foreach ($line in $payments.getSaleLines())
-        <!-- payments = PaymentsModel class vsebuje tudi  SalesLine -->
-        <line>
-            <text align ="left" bold="true" length="22">${line.printTaxName()}</text>
-            <text align ="right" bold="true" length="20">${line.printTaxes()}</text>
-        </line>
+
+        #if ($paymentline.name == "magcard")
+            <line></line>
+            <line>
+                <text bold="true">Kartica</text>
+            </line>
+            <line>
+            <text align ="right" length="42">${paymentline.printTotal()}</text>
+            </line>
+            <line>
+                <text align ="left" length="22">Številka:</text>
+                <text>${paymentline.printCardNumber()}</text>
+            </line>
+            <line>
+                <text align ="left" length="22">Veljavna do:</text>
+                <text>${paymentline.printExpirationDate()}</text>
+            </line>
+            <line>
+                <text align ="left" length="22">Operacija:</text>
+                <text>${paymentline.printTransactionID()}</text>
+            </line>
+            <line>
+                <text align ="left" length="22">Avtorizacija:</text>
+                <text>${paymentline.printAuthorization()}</text>
+            </line>
         #end
-        <line><text>------------------------------------------</text></line>
+
+        #if ($paymentline.name == "cheque")
+            <line></line>
+            <line>
+                <text bold="true">Ček</text>
+            </line>
+            <line>
+                <text align ="right" length="42">${paymentline.printTotal()}</text>
+            </line>
+        #end
+
+        #if ($paymentline.name == "paperin")
+            <line></line>
+            <line>
+                <text bold="true">Zaznamek</text>
+            </line>
+            <line>
+                <text align ="right" length="42">${paymentline.printTotal()}</text>
+            </line>
+        #end
+    #end
+       <line></line>
         <line>
-            <text align ="left"  length="22" bold="true">Osnova</text>
-            <text align ="right"  length="20" bold="true">${payments.printSalesBase()}</text>
+            <text align="left" length="15">Blagajnik:</text>
+            <text>${ticket.printUser()}</text>
         </line>
+        <line></line>
         <line>
-            <text align ="left" length="22" bold="true">DDV</text>
-            <text align ="right" length="20" bold="true">${payments.printSalesTaxes()}</text>
-        </line>
-        <line>
-            <text align ="left" length="22" bold="true">Skupaj</text>
-            <text align ="right" length="20" bold="true">${payments.printSalesTotal()}</text>
-        </line>
-        <line><text>==========================================</text></line>
-        <line>
-            <text length="14">Blagajna:</text>
-            <text bold="true">${payments.printHost()}</text>
-        </line>
-        <line>
-            <text length="14">Sekvenca:</text>
-            <text bold="true">${payments.printSequence()}</text>
-        </line>
-        <line>
-            <text length="14">Od:</text>
-            <text bold="true">${payments.printDateStart()}</text>
-        </line>
-        <line>
-            <text length="14">Do:</text>
-            <text bold="true">${payments.printDateEnd()}</text>
+            <text align="center" length="42">Hvala za nakup.</text>
         </line>
     </ticket>
+
+    #foreach ($paymentline in $ticket.payments)
+        #if ($paymentline.name == "cash")
+            <opendrawer/>
+        #end
+    
+        #if ($paymentline.name == "cashrefund")
+            <opendrawer/>
+        #end
+    #end
 </output>
