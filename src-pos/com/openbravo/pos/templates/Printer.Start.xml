@@ -23,10 +23,10 @@
 <output>
     <display animation="scroll">
         <line>
-            <text>μRAČUNI</text>
+            <text>microOPEN microBlagajna</text>
         </line>
         <line>
-            <text>   Davčna POS blagajna na dotik   </text>
+            <text>Brezplačna odprto-kodna POS blagajna</text>
         </line>
     </display>
 </output>
